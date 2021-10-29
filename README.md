@@ -24,8 +24,8 @@ From Alphabet Soup’s business team, we have received a CSV containing more tha
 From the variables we have, we defined the variable <code>IS_SUCCESSFUL</code> as the target of our model, then the next steps were followed:
 * The following variable(s) were removed from input and data: <code>NAME</code> and <code>EIN</code>
 * Categorical variables with a number of unique values higher than then were bucketed as follows:
-  * <code>APPLICATION_TYPE</code> with less than <code>200</code> value counts were grouped into a new category **Other** reducing the number of unique values from **17** to <code>9</code>
-  * <code>CLASSIFICATION</code> with less than <code>1000</code> value counts were grouped into the category **Other** reducing the number of unique values from **71** to <code>6</code>
+  * <code>APPLICATION_TYPE</code> with less than <code>200</code> value counts were grouped into a new category <code>Other</code> reducing the number of unique values from **17** to <code>9</code>
+  * <code>CLASSIFICATION</code> with less than <code>1000</code> value counts were grouped into the category <code>Other</code> reducing the number of unique values from **71** to <code>6</code>
 * Encode all categorical variables with <code>OneHotEncoder</code>
 * Merge the one-hot encoded DataFrame with the original DataFrame and drop the original categorical variables.
 * Drop our target variable <code>IS_SUCCESSFUL</code> and mantain the remaining as features.
