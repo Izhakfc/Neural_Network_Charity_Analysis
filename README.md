@@ -27,11 +27,24 @@ From the variables we have, we defined the variable <code>IS_SUCCESSFUL</code> a
   * <code>APPLICATION_TYPE</code> with less than <code>200</code> value counts were grouped into a new category **Other** reducing the number of unique values from **17** to <code>9</code>
   * <code>CLASSIFICATION</code> with less than <code>1000</code> value counts were grouped into the category **Other** reducing the number of unique values from **71** to <code>6</code>
 * Encode all categorical variables with <code>OneHotEncoder</code>
+* Merge the one-hot encoded DataFrame with the original DataFrame and drop the original categorical variables.
 * Drop our target variable <code>IS_SUCCESSFUL</code> and mantain the remaining as features.
 * Split the data into training <code>75%</code> and testing <code>25%</code> sets with the sklearn function <code>train_test_split</code>
 * Scale the data with the sklearn function <code>StandardScaler()</code>
 
 ### Compiling, Training, and Evaluating the Model
+Using tensorflow and keras we defined a Neural Network model with two Dense layers of <code>28</code> hidden nodes and <code>15</code> hidden nodes respectively, using the activation function relu and an Output layer with the sigmoid activation layer as shown in the image below: 
+
+<p align="center">
+  <img src="./Resources/model_original.png" alt="Sublime's custom image"/>
+</p>
+
+With this model, we obtained ana accuracy of <code>72.43%</code> and it's performance is shown in the confusion matrix below: 
+
+<p align="center">
+  <img src="./Resources/Original_ConfusionMatrix.png" alt="Sublime's custom image"/>
+</p>
+
 How many neurons, layers, and activation functions did you select for your neural network model, and why?
 Were you able to achieve the target model performance?
 What steps did you take to try and increase model performance?
