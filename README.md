@@ -33,19 +33,60 @@ From the variables we have, we defined the variable <code>IS_SUCCESSFUL</code> a
 * Scale the data with the sklearn function <code>StandardScaler()</code>
 
 ### Compiling, Training, and Evaluating the Model
-Using tensorflow and keras we defined a Neural Network model with two Dense layers of <code>28</code> hidden nodes and <code>15</code> hidden nodes respectively, using the activation function relu and an Output layer with the sigmoid activation layer as shown in the image below: 
+Using tensorflow and keras we defined a Neural Network model with two Dense layers of <code>28</code> hidden nodes and <code>15</code> hidden nodes respectively, using the activation function <code>reLu</code> and an Output layer with the sigmoid activation layer as shown in the image below: 
 
 <p align="center">
   <img src="./Resources/model_original.png" alt="Sublime's custom image"/>
 </p>
 
-With this model, we obtained ana accuracy of <code>72.43%</code> and it's performance is shown in the confusion matrix below: 
+With this model, we obtained an accuracy of <code>72.43%</code> and it's performance is shown in the confusion matrix below: 
 
 <p align="center">
   <img src="./Resources/Original_ConfusionMatrix.png" alt="Sublime's custom image"/>
 </p>
 
-How many neurons, layers, and activation functions did you select for your neural network model, and why?
-Were you able to achieve the target model performance?
-What steps did you take to try and increase model performance?
-## Summary: Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and explain your recommendation.
+### Optimizing the model
+In order to improve the performance of the Neural Network model, multiple approaches were attempted, the approaches were as follows:
+#### Increase the number of Neurons:
+Since there were 43 features for 43 neurons in our first model, an attempt to increase the accuracy of the model by duplicating the number of neurons was performed. The number of neurons for the first Dense Layer is <code>58</code> and for the second layer <code>28</code> as shown in the image below:
+
+<p align="center">
+  <img src="./Resources/model_attempt1.png" alt="Sublime's custom image"/>
+</p>
+
+And the performance obtained from this model was <code>72.51%</code> increasing only <code>0.08%</code> form the original. The confusion matrix for the attempt 1 is shown below:
+
+<p align="center">
+  <img src="./Resources/Attempt1_ConfusionMatrix.png" alt="Sublime's custom image"/>
+</p>
+
+#### Increase number of layers, add Dropout layers and change Activation Functions:
+Since the accuracy obtained in the training epochs was a little bit higher on the training epochs, we added dropout layers that randomly sets input units to 0 during a certain rate preventing overfitting. Also another Dense layer was added in order to extract more complex features, and interchanging the activation function between <code>reLu</code> and <code>softmax</code>
+
+<p align="center">
+  <img src="./Resources/model_attempt2.png" alt="Sublime's custom image"/>
+</p>
+
+The accuracy obtained from this model was <code>72.57%</code> which means an increase of <code>0.06%</code> with respect to the previous optimization attempt and an increase of <code>1.4%</code>
+
+<p align="center">
+  <img src="./Resources/Attempt2_ConfusionMatrix.png" alt="Sublime's custom image"/>
+</p>
+
+#### Auto Optimization
+Using the tool <code>Keras Tuner</code> we can try multiple activation functions, layers or neurons and find out the best hyperparameter values for our model. In this attempt we used the <code>Hyperband</code> algorithm to optimize our model. The model is shown below:
+
+<p align="center">
+  <img src="./Resources/model_attempt3.png" alt="Sublime's custom image"/>
+</p>
+
+The accuracy obtained from this model was <code>72.9%</code> with an increase of <code>0.33%</code> with respect to the previous attempt and <code>0.47%</code> with the original model.
+
+<p align="center">
+  <img src="./Resources/Attempt3_ConfusionMatrix.png" alt="Sublime's custom image"/>
+</p>
+
+## Summary: 
+
+From the results obtained from the last attempt we can conclude that further time in data preprocessing needs to be taken, since the auto-optimization model returns probably the best model with the given features. I will recommend to try out different bucketing sizes for categorical variables and explore another types of data transfromations such as normalization or other scalers.
+Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and explain your recommendation.
